@@ -1,0 +1,108 @@
+Here are some basic SQL interview questions and answers tailored for Python Django API developers:
+
+### **1. What is SQL?**
+**Answer:**  
+SQL (Structured Query Language) is a standard language used to communicate with relational databases. It allows you to perform operations such as querying, updating, and managing databases.
+
+### **2. What are the different types of SQL joins?**
+**Answer:**  
+- **INNER JOIN:** Returns records that have matching values in both tables.
+- **LEFT JOIN (or LEFT OUTER JOIN):** Returns all records from the left table, and the matched records from the right table. If there is no match, NULL values are returned for columns from the right table.
+- **RIGHT JOIN (or RIGHT OUTER JOIN):** Returns all records from the right table, and the matched records from the left table. If there is no match, NULL values are returned for columns from the left table.
+- **FULL JOIN (or FULL OUTER JOIN):** Returns all records when there is a match in either the left or right table. If there is no match, NULL values are returned.
+
+### **3. What is a Primary Key?**
+**Answer:**  
+A Primary Key is a unique identifier for a record in a table. It must contain unique values and cannot contain NULL values. Each table can have only one Primary Key.
+
+### **4. What is a Foreign Key?**
+**Answer:**  
+A Foreign Key is a field (or collection of fields) in one table that refers to the Primary Key in another table. It establishes a relationship between two tables, enforcing referential integrity.
+
+### **5. Explain the difference between `WHERE` and `HAVING` clauses.**
+**Answer:**  
+- **`WHERE` Clause:** Used to filter records before any groupings are made. It applies to individual rows in a query.
+- **`HAVING` Clause:** Used to filter records after groupings have been made using `GROUP BY`. It applies to the aggregated data.
+
+### **6. How do you perform a basic SELECT query in SQL?**
+**Answer:**  
+A basic `SELECT` query is used to retrieve data from a database. The syntax is as follows:
+```sql
+SELECT column1, column2 FROM table_name WHERE condition;
+```
+Example:
+```sql
+SELECT name, age FROM users WHERE age > 25;
+```
+
+### **7. What is a transaction in SQL?**
+**Answer:**  
+A transaction is a sequence of operations performed as a single logical unit of work. A transaction is successful only if all operations within it succeed. If any operation fails, the transaction is rolled back.
+
+Key properties of transactions (ACID):
+- **Atomicity:** The transaction is treated as a single unit; it either completes fully or not at all.
+- **Consistency:** Ensures that the database is in a valid state before and after the transaction.
+- **Isolation:** Transactions are isolated from each other until they are complete.
+- **Durability:** Once a transaction is committed, it is permanently saved.
+
+### **8. How do you use the `GROUP BY` clause in SQL?**
+**Answer:**  
+The `GROUP BY` clause is used to group rows that have the same values in specified columns and perform aggregate functions like `COUNT()`, `SUM()`, `AVG()`, etc. The syntax is:
+```sql
+SELECT column1, COUNT(*) FROM table_name GROUP BY column1;
+```
+Example:
+```sql
+SELECT department, COUNT(*) FROM employees GROUP BY department;
+```
+
+### **9. What is indexing, and how does it affect query performance?**
+**Answer:**  
+An index is a database object that improves the speed of data retrieval operations by providing quick access to rows in a table. However, while indexes speed up SELECT queries, they can slow down INSERT, UPDATE, and DELETE operations because the index also needs to be updated.
+
+### **10. How can you prevent SQL injection in a Django application?**
+**Answer:**  
+In Django, SQL injection is prevented by using ORM (Object-Relational Mapping) methods, which automatically escape query parameters. Avoid executing raw SQL queries directly with user inputs. If raw SQL must be used, always use Django's parameterized queries, like:
+```python
+from django.db import connection
+
+with connection.cursor() as cursor:
+    cursor.execute("SELECT * FROM my_table WHERE column = %s", [user_input])
+```
+
+### **11. What are aggregate functions in SQL?**
+**Answer:**  
+Aggregate functions perform a calculation on a set of values and return a single value. Common aggregate functions include:
+- `COUNT()`: Counts the number of rows.
+- `SUM()`: Adds up values.
+- `AVG()`: Calculates the average of values.
+- `MAX()`: Returns the maximum value.
+- `MIN()`: Returns the minimum value.
+
+### **12. How do you perform a `JOIN` in Django ORM?**
+**Answer:**  
+Django ORM handles `JOIN` operations automatically when you query across relationships. For example:
+```python
+# Assuming a ForeignKey relationship between Author and Book models
+books = Book.objects.filter(author__name="John Doe")
+```
+Django performs an SQL `JOIN` behind the scenes based on the model relationships.
+
+### **13. What is the difference between `COUNT(*)` and `COUNT(column_name)`?**
+**Answer:**  
+- **`COUNT(*)`:** Counts all rows in the table, including rows with `NULL` values.
+- **`COUNT(column_name)`:** Counts only the non-NULL values in the specified column.
+
+### **14. What is normalization, and why is it important?**
+**Answer:**  
+Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves dividing a database into smaller, related tables and defining relationships between them. This leads to more efficient queries, easier maintenance, and better data consistency.
+
+### **15. What are the different types of indexes in SQL?**
+**Answer:**
+- **Primary Index:** Automatically created when a primary key is defined.
+- **Unique Index:** Ensures that all values in a column are unique.
+- **Composite Index:** An index on multiple columns.
+- **Clustered Index:** Determines the physical order of data in a table.
+- **Non-Clustered Index:** A separate structure that points to the data in the table.
+
+These are some common SQL interview questions that are especially relevant to Django API developers. Understanding these concepts can help you effectively interact with databases in your Django applications.

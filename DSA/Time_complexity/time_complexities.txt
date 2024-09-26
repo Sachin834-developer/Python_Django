@@ -1,0 +1,32 @@
+                To Search - O(1)                To Add - O(1)           To remove - O(1)      To insert
+
+SET:                O(1)                            O(1)                        O(1)            0(1)
+
+
+List/Array:         O(n)                            O(1)                        O(n)            O(n)    
+
+
+
+Dict:               O(1)                            O(1)                        O(1)            O()
+
+
+
+Tuple:
+
+
+String:
+ 
+Linked List         O(n)                            
+
+sorting of string using sorted(text)  is O(n)  operation 
+if you sort two of length n then your Big O is   -->  n log n 
+
+Note:
+
+opt += word1[i] + word2[i] involves string concatenation. In Python, strings are immutable, so each concatenation operation creates a new string. This takes 
+O(k) time, where 
+𝑘
+k is the length of opt so far. As this operation happens 
+𝑛
+n times, the concatenation operations cumulatively take 
+O(n**2).

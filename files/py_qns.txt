@@ -1,0 +1,93 @@
+What are the key differences between Python 2.x and Python 3.x?
+Explain Python’s Global Interpreter Lock (GIL). How does it affect multithreading in Python?
+How does Python manage memory?
+What is the difference between deepcopy and shallow copy in Python?
+Explain the difference between __init__ and __new__.?
+What are Python decorators, and how do they work?
+How does Python's yield keyword work, and how is it different from return?
+What are *args and **kwargs in Python, and when would you use them?
+What is the difference between a list, a tuple, and a set?
+How do you handle exceptions in Python? Explain the use of try, except, else, and finally.
+What are metaclasses in Python, and how do you use them?
+Explain list comprehension and generator expressions.
+How does Python’s garbage collection work?
+What is the difference between @staticmethod and @classmethod in Python?
+What are Python’s data structures? Explain their uses.
+
+Python Language and Syntax
+Explain Python's pass-by-reference vs. pass-by-value nature.
+
+Discuss how Python passes arguments to functions, and clarify the distinction between mutable and immutable types.
+What is the difference between is and == in Python?
+
+Explain object identity (is) vs. equality (==).
+What are Python's built-in functions?
+
+Discuss common built-in functions like map(), filter(), reduce(), zip(), etc.
+What is the purpose of Python’s __call__ method?
+
+Explain callable objects and how __call__ can turn instances of classes into callable objects.
+What is the difference between @staticmethod and @classmethod in Python?
+
+Discuss the differences in behavior and use cases for each decorator.
+How does Python's with statement work, and what are context managers?
+
+Explain the with statement and how context managers handle resource management.
+Object-Oriented Programming (OOP)
+What is method resolution order (MRO) in Python, and how does it work?
+
+Explain MRO and how Python determines which method to call in a class hierarchy, particularly with multiple inheritance.
+How does inheritance work in Python?
+
+Discuss single inheritance, multiple inheritance, and the use of super().
+Explain the concept of monkey patching in Python.
+
+Describe how you can modify or extend classes or modules at runtime.
+What is the difference between overloading and overriding in Python?
+
+Discuss function/method overloading (though Python doesn't support it natively) and method overriding.
+What are abstract base classes (ABC) in Python, and how are they used?
+
+Explain how to define and enforce abstract methods in classes using the abc module.
+Performance and Optimization
+How can you optimize a Python program’s performance?
+
+Discuss general optimization strategies, like using built-in functions, optimizing loops, using generators, and employing libraries like numpy for efficient array operations.
+Explain the difference between time complexity and space complexity in Python.
+
+Provide examples of how time and space complexity can be calculated for Python code.
+What are the implications of using global variables in Python?
+
+Discuss variable scope, the use of global, and its impact on code maintainability and performance.
+Explain Python's sys and os modules and their importance.
+
+Discuss their roles in interacting with the system environment and managing system-level tasks.
+Advanced Python Features
+What are Python’s coroutines, and how do they work?
+
+Explain how coroutines differ from regular functions and how they enable cooperative multitasking with asyncio.
+Explain the use of Python's async and await keywords.
+
+Discuss how asynchronous programming is implemented using these keywords, along with the asyncio library.
+What is duck typing in Python, and how does it relate to dynamic typing?
+
+Explain the concept of duck typing and how Python’s dynamic typing system allows for flexible code.
+How do Python’s lambda functions work?
+
+Discuss anonymous functions and their common uses in Python.
+Explain Python’s abc module.
+
+Discuss abstract base classes and how they enforce method implementation in derived classes.
+What is memoization in Python?
+
+Explain the concept of caching function results to improve performance and how it can be implemented using functools.lru_cache.
+Testing and Debugging
+How do you test and debug Python code?
+
+Discuss tools like unittest, pytest, and debugging techniques using pdb.
+Explain the role of assertions in Python.
+
+Discuss how assertions are used to enforce conditions that must hold true during execution.
+How do you handle logging in Python?
+
+Discuss Python’s logging module and best practices for logging in applications.

@@ -1,0 +1,10 @@
+Algorithms:
+    1. Specipic to a Data structure
+    2. general Algorithms
+
+
+    For algirthms need to learn before move to next data structure 
+    https://instabyte.io/p/dsa-master
+
+    Once you learn the DS and A, solve top interview qns on them , below qns are Ordered easy --> difficult
+    https://instabyte.io/p/interview-master-100

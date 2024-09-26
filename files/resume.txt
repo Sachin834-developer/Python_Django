@@ -1,0 +1,39 @@
+Results-driven Python Developer with 2 years of experience in designing and developing web applications and robust backend systems. Proficient in Django, SQL, JavaScript, and HTML/CSS, with hands-on experience in building scalable APIs and integrating frontend and backend components. Adept at translating business requirements into technical solutions, optimizing database queries, and ensuring seamless user experiences through efficient coding practices. Passionate about continuous learning and contributing to dynamic development teams.
+
+
+
+Python
+Django
+Javascript
+PostgreSQL
+Numpy
+Pandas
+Html and Css
+Git
+Docker
+Django Rest Framework
+API Development
+MS SQL
+
+https://www.linkedin.com/in/sumanth-k-m-8ab736313/
+
+Integrated third party APIs into existing applications for enhanced functionality.
+Optimized database queries using SQLAlchemy ORM library.
+Designed and developed RESTful APIs with Django Rest microframework.
+Employed Git version control system for tracking changes in source code repositories over time.
+Managed multiple projects simultaneously while meeting tight deadlines without compromising quality.
+Created unit tests for existing and new Python code using PyTest framework.
+Utilized Pandas library for data analysis, manipulation, and visualization purposes.
+Analyzed system requirements and contributed to the design and architecture of new Python solutions.
+Managed cloud infrastructure and services (AWS, Azure) using Python scripts for deployment and automation.
+Designed data models and implemented efficient data storage solutions with SQL and NoSQL databases.
+Conducted code reviews and optimized Python code for performance and maintainability.
+Worked in Agile development teams, participating in scrums and sprints to deliver projects on time.
+Collaborated with cross-functional teams to understand end-user requirements and propose Python-based solutions.
+Collaborated with frontend developers to design and implement RESTful APIs for web applications.
+
+
+100 Days of Python Complete Bootcamp in Udemy.
+
+Received client appreciation and an on-the-spot award for implementing API security and Single Sign-On (SSO) login for a Django application within a short timeframe.
+Named Employee of the Month twice for optimizing API performance using various strategies, significantly enhancing efficiency and security in backend systems.

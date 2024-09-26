@@ -1,0 +1,198 @@
+Here are some medium-difficulty SQL interview questions and answers, tailored for Python Django API developers:
+
+### **1. What are Common Table Expressions (CTEs) in SQL?**
+**Answer:**
+A Common Table Expression (CTE) is a temporary result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. CTEs are defined using the `WITH` keyword.
+
+**Example:**
+```sql
+WITH cte AS (
+    SELECT department, COUNT(*) as total_employees 
+    FROM employees 
+    GROUP BY department
+)
+SELECT * FROM cte WHERE total_employees > 10;
+```
+CTEs make complex queries more readable and are useful for breaking down multi-step operations.
+
+### **2. How would you handle a Many-to-Many relationship in SQL?**
+**Answer:**
+A Many-to-Many relationship in SQL is usually handled by creating a junction (or associative) table that holds foreign keys referencing the two related tables.
+
+**Example:**
+```sql
+-- Table structure for Courses and Students
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100)
+);
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(100)
+);
+
+-- Junction table to create a many-to-many relationship
+CREATE TABLE course_student (
+    course_id INT,
+    student_id INT,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+```
+In Django, this can be handled using the `ManyToManyField` in models, which automatically creates a junction table.
+
+### **3. How do you use window functions in SQL?**
+**Answer:**
+Window functions perform calculations across a set of table rows related to the current row without collapsing them into a single output row. They are often used for ranking, cumulative totals, or moving averages.
+
+**Example:**
+```sql
+SELECT name, department, salary,
+       RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank
+FROM employees;
+```
+In this query, the `RANK()` function calculates the rank of each employee within their department based on salary.
+
+### **4. How do you perform a recursive query in SQL?**
+**Answer:**
+Recursive queries are often used for hierarchical data (e.g., organizational structures). In SQL, you can use a recursive CTE.
+
+**Example:**
+```sql
+WITH RECURSIVE subordinates AS (
+    SELECT id, name, manager_id
+    FROM employees
+    WHERE manager_id IS NULL -- base case
+
+    UNION ALL
+
+    SELECT e.id, e.name, e.manager_id
+    FROM employees e
+    INNER JOIN subordinates s ON s.id = e.manager_id -- recursive case
+)
+SELECT * FROM subordinates;
+```
+This query retrieves all employees and their subordinates in a hierarchy.
+
+### **5. What is the difference between `UNION` and `UNION ALL`?**
+**Answer:**
+- **`UNION`:** Combines the result sets of two or more `SELECT` statements, but removes duplicate rows.
+- **`UNION ALL`:** Combines result sets of two or more `SELECT` statements and includes all duplicate rows.
+
+**Example:**
+```sql
+SELECT name FROM employees
+UNION
+SELECT name FROM managers;
+
+-- vs
+
+SELECT name FROM employees
+UNION ALL
+SELECT name FROM managers;
+```
+`UNION ALL` is generally faster because it doesn't perform the duplicate elimination step.
+
+### **6. How can you optimize slow SQL queries?**
+**Answer:**
+There are several ways to optimize slow SQL queries:
+- **Indexes:** Create indexes on columns that are frequently used in `WHERE`, `JOIN`, and `GROUP BY` clauses.
+- **Query Structure:** Rewrite inefficient queries (e.g., avoid `SELECT *` and use specific columns instead).
+- **Denormalization:** In some cases, you can improve performance by reducing joins through denormalization.
+- **Query Execution Plan:** Analyze the query execution plan using `EXPLAIN` to identify bottlenecks.
+- **Batching:** Break large operations into smaller batches.
+
+### **7. How would you implement pagination in SQL?**
+**Answer:**
+Pagination is typically implemented using the `LIMIT` and `OFFSET` clauses in SQL.
+
+**Example:**
+```sql
+SELECT * FROM employees
+ORDER BY employee_id
+LIMIT 10 OFFSET 20;
+```
+This query retrieves 10 rows starting from the 21st row (`OFFSET 20`).
+
+In Django, pagination can be handled using the `Paginator` class or using built-in pagination features of Django REST Framework.
+
+### **8. Explain the difference between `TRUNCATE`, `DELETE`, and `DROP` statements.**
+**Answer:**
+- **`DELETE`:** Removes rows from a table based on a `WHERE` condition. It can be rolled back and triggers are fired.
+- **`TRUNCATE`:** Removes all rows from a table without logging individual row deletions. It is faster than `DELETE`, but cannot be rolled back in most databases.
+- **`DROP`:** Removes the entire table (structure and data) from the database.
+
+### **9. What is a transaction isolation level, and what are the different levels?**
+**Answer:**
+Transaction isolation levels define the degree to which transactions are isolated from each other in a database. They help control concurrency issues like dirty reads, non-repeatable reads, and phantom reads.
+
+The isolation levels are:
+- **Read Uncommitted:** Allows reading uncommitted changes made by other transactions.
+- **Read Committed:** Prevents dirty reads but allows non-repeatable reads.
+- **Repeatable Read:** Prevents dirty and non-repeatable reads but allows phantom reads.
+- **Serializable:** The highest isolation level, preventing dirty, non-repeatable, and phantom reads.
+
+### **10. How do you perform database migrations in Django?**
+**Answer:**
+Django manages database migrations using the `migrate` and `makemigrations` commands:
+1. **`python manage.py makemigrations`**: Generates migration files based on model changes.
+2. **`python manage.py migrate`**: Applies the migration files to the database.
+
+Django's migrations system ensures that the database schema stays in sync with the model definitions in your code.
+
+### **11. How do you use the `COALESCE` function in SQL?**
+**Answer:**
+The `COALESCE` function returns the first non-NULL value from a list of arguments. It is useful for providing default values.
+
+**Example:**
+```sql
+SELECT name, COALESCE(phone, 'No Phone') as phone
+FROM employees;
+```
+This query returns 'No Phone' if the `phone` column is `NULL`.
+
+### **12. How do you handle deadlocks in a database?**
+**Answer:**
+Deadlocks occur when two or more transactions are waiting for each other to release locks. Handling deadlocks involves:
+- **Timeouts:** Setting a timeout for transactions so they don't wait indefinitely.
+- **Deadlock Detection:** Most databases have mechanisms to detect deadlocks and automatically roll back one of the transactions.
+- **Optimizing Transactions:** Keeping transactions short and reducing the number of locks can minimize deadlocks.
+
+### **13. Explain the concept of foreign key constraints and how they enforce referential integrity.**
+**Answer:**
+A foreign key constraint ensures that the value in one table matches the value in another table, enforcing referential integrity. This means you cannot insert a row in the child table that does not have a corresponding row in the parent table, and you cannot delete a row from the parent table if it still has related rows in the child table (unless you specify `ON DELETE CASCADE` or similar options).
+
+**Example:**
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+```
+
+### **14. How do you perform a full-text search in SQL?**
+**Answer:**
+Full-text search allows you to search text fields for words or phrases. In MySQL, for example, you can use the `FULLTEXT` index and `MATCH()` function.
+
+**Example:**
+```sql
+SELECT * FROM articles
+WHERE MATCH(content) AGAINST('Django ORM');
+```
+In Django, full-text search can be implemented using the `SearchVector` and `SearchQuery` classes from `django.contrib.postgres.search`.
+
+### **15. How would you perform a database backup and restore in PostgreSQL?**
+**Answer:**
+- **Backup:** Use the `pg_dump` utility to back up a PostgreSQL database.
+```bash
+pg_dump dbname > db_backup.sql
+```
+- **Restore:** Use the `psql` utility to restore the backup.
+```bash
+psql dbname < db_backup.sql
+```
+In Django, you can automate backups by running custom management commands or using third-party packages like `django-dbbackup`.
+
+These medium-level questions focus on more complex SQL topics, handling performance and scalability, and integrating SQL with Django's ORM. They aim to test your understanding of SQL in real-world application scenarios.

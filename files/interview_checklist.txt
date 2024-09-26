@@ -1,0 +1,107 @@
+
+TARGET : JOB KOTTALIIIIIIIIIIIIIIIIIIIIIIIIIIII , ASAP SEP 15th is the DeadLine.
+
+Python 
+	1. Prog Qns
+		1. List Qns
+		2. Str Qns
+		3. Dict Qns
+		4. Standard Qns
+		5. Algo Qns
+		6. Asked in Interviews Qns
+
+	2. Theory 
+		1. Decorators 						--Done
+		2. Class ,Object and instance and class variables. 	--Done
+		3. Instance, static, class methods 			--Done
+		4. Inheritance						--Done
+		5. Polymorphism , method overiding and overloading.	--Done
+		6. Abstraction						--Done
+		7. Encapsulaton , Access Modifiers			--Done
+		8. @Property						--Done
+		9. Special Methods					--Done
+		9. Generators						--Done
+		10. Iterators , Iterables				--Done
+		11. Exception Handling					--Done
+		12. File Handling					--Done
+		13. MRO							--Done
+		14. Shallow copy and Deep Copy				--Done
+		15. List vs Tuple differences with examples		--Done
+		16. Database connection with python			--Done
+		17. list comp, dict comp with examples 			--DOne
+		18. map,reduce,filter,zip, enumerate			--Done
+		19. 3rd party api integration				--Done
+		20. Async.io module					--Done
+		21. Multithreading defn					--Done
+		22. Multiprocessing defn				--Done
+		23. 
+		24. SCOPE of Variables, LEGB RULE			--Done
+		25. Python Memory Management 				--DOne
+		26. How Python Works					--DOne
+		27.
+		
+
+
+-----------------------------
+Note : Rest API FUndamentals : https://restful-api.dev/rest-fundamentals#rest-api
+Django
+	1. Prog Qns
+
+	2. Theory 
+		0. Django vs Flask vs FastAPI
+		1. Model relationships with examples
+		2. Api optimization techniques
+		3. Request_response cycle
+		4. Middlewares
+		5. Serailizers
+		6. ORM , SELECT_related , Prefetch_related
+		7. Agreegate and annotate
+		8. Authentication and Authorization
+		9. Django Admin Panel
+		10.HTTP Methods, Put vs Patch , Status codes
+		12. Cookies
+		13. Sessions
+		14. session, Token,JWT,OAUTH2 Authentication
+		15. csrf , cors 
+		16. Static files settings in local vs production
+		17. Signals
+		18. Celery, RabbitMQ
+
+-----------------------------
+JS
+	1. Prog Qns
+
+	2. Theory 
+
+-----------------------------
+SQL
+	1. Prog Qns
+
+	2. Theory 
+		 1. DB Indexing , clustered and non
+
+		 2. Group by, 
+
+		 3. ACID properties
+
+		 4. Drop, delete, Truncate
+ 
+		 5. JOINS
+
+		 6. Constraints ,
+
+ 		 7. Primary key , foriegn Key
+		
+ 		 8. 
+
+-----------------------------
+Docker, AWS , Git 
+	
+	1. Imp Qns 
+
+-----------------------------
+React,Vue 
+
+	1. Theory Qns
+
+	2. couple of Practical qns ( practice in Codesandbox setup)

@@ -1,0 +1,47 @@
+
+Core Data Structures:
+    a. must know 
+        1. Arrays and Strings
+        2. Linked List
+        3. Hashmaps and set
+        4. Stack
+        5. Queues
+        6. Binary Trees
+
+    b. good to know
+        7. Heaps
+        8. Graphs
+
+    c. know at last
+        9.Tries
+        10.Union Find
+
+Data Structure learning tips:
+
+ 1. Note down and know the time complexity of the operation in a Data structure.
+    ex: 1. Insertion/deletion time complexity of Linked List is O(1) - Constant time
+        2. Insertion/deletion time complexity of List is O(n) - Linear time
+
+    understanding these time comp.. will help make decisions to choos right data structure to solve the problem.
+
+
+Leetcode Tips:
+
+ 1. Start with solving Easy level problems: 
+    don't jump in to medium level unless you start feeling easy level questions are really easy, same goes with medium questions
+
+ 2. Understand and implementation of  the base alogirthms first before actually solving the problem based on it.
+  
+ 3. Most importantly Understand why the algorithm works in very deep level. use pen/paper or drawing board to illustriate the algorithm. 
+
+ 4. lastly, practice it enough times to make or get in to your muscle memory,
+    remember only way to good at anything is by practcing it number of times.
+
+ 5. After practicing few problems, practice your leet code problems with actual timers, beacause most interviews are time bound and we have the constant time pressure on us, so try to solve any prblem under 30 to 45 minute window else look to the top 5 solutions and understand why it works and learn from them.
+
+
+Approach to solve any problem:
+
+ 1. Come up with the solution in your mind : forgot you need code the solution think about how you can solve this problem.practice it until you reach a level to that you differentiate your thinking on solving the problem then coding it out.
+
+ 2.then Code the solution in the computer 
