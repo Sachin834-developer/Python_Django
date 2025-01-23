@@ -5,8 +5,6 @@ Given two strings s and t, return true if t is an
 anagram
  of s, and false otherwise.
 
- 
-
 Example 1:
 
 Input: s = "anagram", t = "nagaram"
@@ -21,38 +19,38 @@ Output: false
 
 """
 
+
 # Time : n log n
-#Space : O(n+m)
+# Space : O(n+m)
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        ss=sorted(s)
-        st=sorted(t)
+        ss = sorted(s)
+        st = sorted(t)
 
         if ss == st:
             return True
         return False
 
 
-
 # Solution 2
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s_d ={}
+        s_d = {}
         t_d = {}
-        if len(s)!=len(t):
-            return False 
+        if len(s) != len(t):
+            return False
         for char in s:
             if char not in s_d:
                 s_d[char] = 1
             else:
-                s_d[char]+=1
+                s_d[char] += 1
         for char in t:
             if char not in t_d:
-                t_d[char]= 1
+                t_d[char] = 1
             else:
-                t_d[char]+=1
+                t_d[char] += 1
         return s_d == t_d
-        
+
 
 """
 Let's break down the time and space complexity for the `isAnagram` function you've provided.

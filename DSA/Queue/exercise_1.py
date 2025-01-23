@@ -1,7 +1,8 @@
-
 import threading
 import time
 from collections import deque
+
+
 class Queue:
     def __init__(self):
         self.buffer = deque()
@@ -10,10 +11,9 @@ class Queue:
         self.buffer.appendleft(val)
 
     def dequeue(self):
-        if len(self.buffer)==0:
+        if len(self.buffer) == 0:
             print("Queue is empty")
             return
-
         return self.buffer.pop()
 
     def is_empty(self):
@@ -21,12 +21,15 @@ class Queue:
 
     def size(self):
         return len(self.buffer)
-    
+
+
 food_order_queue = Queue()
+
+
 def place_orders(orders):
     for order in orders:
         food_order_queue.enqueue(order)
-        print("Placing order for:",order)
+        print("Placing order for:", order)
         time.sleep(0.5)
 
 
@@ -34,14 +37,14 @@ def serve_orders():
     time.sleep(1)
     while True:
         order = food_order_queue.dequeue()
-        print('Serveing Order :',order)
+        print("Serveing Order :", order)
         time.sleep(2)
 
-if __name__ == '__main__':
-    orders = ['pizza','samosa','pasta','biryani','burger']
-    t1 =  threading.Thread(target=place_orders,args=(orders,))
-    t2 = threading.Thread(target=serve_orders)
 
+if __name__ == "__main__":
+    orders = ["pizza", "samosa", "pasta", "biryani", "burger"]
+    t1 = threading.Thread(target=place_orders, args=(orders,))
+    t2 = threading.Thread(target=serve_orders)
 
     t1.start()
     t2.start()

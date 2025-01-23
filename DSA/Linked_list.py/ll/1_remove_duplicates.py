@@ -1,5 +1,5 @@
 """
-83 LC. Remove Duplicates from Sorted List
+83 LC. Remove Duplicates from Sorted linked List
 Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
 
 Input: head = [1,1,2,3,3]   
@@ -12,6 +12,7 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:

@@ -25,16 +25,20 @@ While linked lists have these advantages, they also come with some trade-offs:
 
 Access Time: Accessing an element by index in a linked list is O(n) because you need to traverse the list from the head. In contrast, arrays offer O(1) access time.
 Memory Overhead: Linked lists use extra memory for storing pointers/references in each node, which can be significant for large datasets.
+
 Choosing between linked lists and arrays depends on the specific requirements of the task, such as the need for random access versus dynamic resizing and frequent insertions/deletions.
 
 
 """
-num_list = list(range(6,11)) # [i for i in range(5)]
+
+num_list = list(range(6, 11))  # [i for i in range(5)]
+
 
 class Node:
-    def __init__(self,data:any,next_node:object) -> None:
+    def __init__(self, data: any, next_node: object) -> None:
         self.data = data
         self.next = next_node
+
 
 class LinkedList:
     def __init__(self) -> None:
@@ -45,18 +49,18 @@ class LinkedList:
             print("Linked List is Empty")
 
         cur_node = self.top_node
-        str_rep =''
+        str_rep = ""
         while cur_node:
-            str_rep += str(cur_node.data)  + '-->'
+            str_rep += str(cur_node.data) + "-->"
             cur_node = cur_node.next
         print(str_rep)
 
-    def insert_at_beginning(self,element:any) -> None:
-        node = Node(element,self.top_node)
+    def insert_at_beginning(self, element: any) -> None:
+        node = Node(element, self.top_node)
         self.top_node = node
 
-    def insert_at_end(self,element:any) -> None:
-        node = Node(element,None)
+    def insert_at_end(self, element: any) -> None:
+        node = Node(element, None)
         if self.top_node is None:
             self.top_node = node
             return
@@ -66,8 +70,8 @@ class LinkedList:
             top_node = top_node.next
 
         top_node.next = node
-    
-    def insert_values(self,data_list:list) -> None:
+
+    def insert_values(self, data_list: list) -> None:
         # take list of values and create a new fresh linked list
         self.top_node = None
 
@@ -77,82 +81,84 @@ class LinkedList:
 
     def get_length(self) -> int:
         counter = 0
-        top_node  = self.top_node
+        top_node = self.top_node
         while top_node:
             top_node = top_node.next
-            counter+=1
+            counter += 1
         return counter
-    
-    def remove_at(self,index:int) -> None:
 
-        if index<0 or index>=self.get_length():#because index starts at 0
-            raise Exception('Invalid input')
-        
+    def remove_at(self, index: int) -> None:
+
+        if index < 0 or index >= self.get_length():  # because index starts at 0
+            raise Exception("Invalid input")
+
         if index == 0:
             self.top_node = self.top_node.next
 
         counter = 0
         current_node = self.top_node
         while current_node:
-            if counter==index-1:
-                current_node.next = current_node.next.next #current_node.next is the removing element so we take next from removing el and keep it to its previos el
+            if counter == index - 1:
+                current_node.next = (
+                    current_node.next.next
+                )  # current_node.next is the removing element so we take next from removing el and keep it to its previos el
                 break
             current_node = current_node.next
-            counter+=1
+            counter += 1
 
-    def insert_at(self,index:int,data:any) -> None:
+    def insert_at(self, index: int, data: any) -> None:
 
-        if 0<index>self.get_length():
-            raise Exception('Invalid Input index')
-        
+        if 0 < index > self.get_length():
+            raise Exception("Invalid Input index")
+
         if index == 0:
             self.insert_at_beginning(data)
             return
-        
+
         counter = 0
         cur_node = self.top_node
 
         while cur_node:
-            if counter==index-1:
-                cur_node.next = Node(data,cur_node.next)
+            if counter == index - 1:
+                cur_node.next = Node(data, cur_node.next)
                 break
             cur_node = cur_node.next
-            counter+=1
+            counter += 1
 
-    def inser_after_this_value(self,data_after:any,data:any) -> None:
+    def inser_after_this_value(self, data_after: any, data: any) -> None:
         if self.top_node is None:
-                return
-        
-        cur_node  = self.top_node
+            return
+
+        cur_node = self.top_node
         while cur_node:
             if cur_node.data == data_after:
-                cur_node.next = Node(data,cur_node.next)
+                cur_node.next = Node(data, cur_node.next)
                 break
             elif cur_node.next is None:
-                raise Exception('Invalid Input:',data_after)
+                raise Exception("Invalid Input:", data_after)
             cur_node = cur_node.next
 
-    def remove_by_this_value(self, data:any) -> None: #O(n)  traversal to find 
-            # Remove first node that contains 
-            if self.top_node is None:
-                return
-            
-            if self.top_node.data == data:
-                self.top_node = self.top_node.next
+    def remove_by_this_value(self, data: any) -> None:  # O(n)  traversal to find
+        # Remove first node that contains
+        if self.top_node is None:
+            return
 
-            cur_node  = self.top_node
-            while cur_node.next:
-                if cur_node.data == data:
-                    cur_node.next = cur_node.next.next
-                    break
-                cur_node = cur_node.next
+        if self.top_node.data == data:
+            self.top_node = self.top_node.next
 
-    def delete_node(prev_node): #  O(1) bcoz we have referenve node
+        cur_node = self.top_node
+        while cur_node.next:
+            if cur_node.data == data:
+                cur_node.next = cur_node.next.next
+                break
+            cur_node = cur_node.next
+
+    def delete_node(prev_node):  #  O(1) bcoz we have referenve node
         if prev_node and prev_node.next:
             prev_node.next = prev_node.next.next  # Bypass the node to be deleted
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ll = LinkedList()
     # ll.insert_at_beginning(3)
     # ll.insert_at_beginning(2)
@@ -168,13 +174,13 @@ if __name__ == '__main__':
     # ll.remove_by_this_value(6)
     # ll.remove_by_this_value(9)
     # ll.remove_by_this_value(8)
-    
+
     ll = LinkedList()
-    ll.insert_values(["banana","mango","grapes","orange"])
+    ll.insert_values(["banana", "mango", "grapes", "orange"])
     ll.print()
-    ll.inser_after_this_value("mango","apple") # insert apple after mango
+    ll.inser_after_this_value("mango", "apple")  # insert apple after mango
     ll.print()
-    ll.remove_by_this_value("orange") # remove orange from linked list
+    ll.remove_by_this_value("orange")  # remove orange from linked list
     ll.print()
     # ll.remove_by_this_value("figs")
     ll.remove_by_this_value("banana")
@@ -184,7 +190,6 @@ if __name__ == '__main__':
     ll.remove_by_this_value("grapes")
     ll.print()
 
-
     # ll.remove_at(2)
     # ll.insert_at(2,'seven')
     # ll.insert_at(4,'eight')
@@ -192,7 +197,3 @@ if __name__ == '__main__':
     # ll.remove_at(2)
 
     ll.print()
-
-
-
-    

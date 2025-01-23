@@ -96,27 +96,32 @@ def need_decoration():
 decorated_func=new_decorator(need_decoration)
 print(decorated_func) #<function new_decorator.<locals>.wrapper at 0x0000025CEE6AB9D0>
 print(decorated_func())
-#
 
 need_decoration() 
 
  example 
  """
 
+
 def decorater_func(func):
-    def wrapper_func(*args,**kwargs):
-        print(*args)# here it accepts the params that are passed to the original function .
-        result = func(*args,**kwargs)
-        print(result)# after executong original function 
-        #if result.islower():
+    def wrapper_func(*args, **kwargs):
+        print(
+            *args
+        )  # here it accepts the params that are passed to the original function .
+        result = func(*args, **kwargs)
+        print(result)  # after executong original function
+        # if result.islower():
         return result.upper()
+
     return wrapper_func
+
 
 @decorater_func
 def display(name):
     return name
 
-res = display('sachin')
+
+res = display("sachin")
 print(res)
 
 
@@ -135,14 +140,15 @@ print(greet)
 print(greet())
 """
 
+
 def validate_params(func):
     def wrapper_func(*args, **kwargs):
         # Validate positional arguments
         valid_args = all(isinstance(arg, int) for arg in args)
-        
+
         # Validate keyword arguments (if any)
         valid_kwargs = all(isinstance(value, int) for value in kwargs.values())
-        
+
         if valid_args and valid_kwargs:
             return func(*args, **kwargs)
         else:
@@ -150,25 +156,20 @@ def validate_params(func):
 
     return wrapper_func
 
+
 @validate_params
 def add(a, b):
-    return f'Sum of {a} and {b} is {a + b}'
+    return f"Sum of {a} and {b} is {a + b}"
+
 
 @validate_params
 def mul(a, b):
     return a * b
 
+
 # Test cases
-print(add(3, 4))            # Valid input
-print(add(3, '4'))          # Invalid input
-print(mul(5, 6))            # Valid input
-print(mul(5, 6, c=2))       # Keyword arguments are not validated, but valid
-print(mul(5, '6'))          # Invalid input
-
-
-
-    
-
-    
-
-    
+print(add(3, 4))  # Valid input
+print(add(3, "4"))  # Invalid input
+print(mul(5, 6))  # Valid input
+print(mul(5, 6, c=2))  # Keyword arguments are not validated, but valid
+print(mul(5, "6"))  # Invalid input

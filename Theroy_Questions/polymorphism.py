@@ -1,7 +1,7 @@
 # """
 # Polymorphism:  'Many-forms'
 
-# it is a ability of a python object to behave differently in different 
+# it is a ability of a python object to behave differently in different
 # situations.
 # Ex: A function behaving differently to different type of arguments
 # Overloading: The method name is the same, but the method signature (parameters) is different.
@@ -54,46 +54,54 @@ def add(x, y, z=0):
 print(add(2, 3))
 # print(add(2, 3, 4))
 
+
 class Calculator:
     def add(self, *args):  # Accepts a variable number of arguments
         return sum(args)
+
 
 # Creating an instance of Calculator
 calc = Calculator()
 
 # Calling the method with different numbers of arguments
-print(calc.add(1))            # 1
-print(calc.add(1, 2))         # 3
-print(calc.add(1, 2, 3, 4))   # 10
+print(calc.add(1))  # 1
+print(calc.add(1, 2))  # 3
+print(calc.add(1, 2, 3, 4))  # 10
 
 
 # ###################################################
 # # Example : Payment System
 
+
 # Method Overirding
 class PaymentMethod:
-    def process_payment(self,amount):
+    def process_payment(self, amount):
         raise NotImplementedError("Subclasses should implement this method")
-    
+
+
 class CreditCardPayment(PaymentMethod):
     def process_payment(self, amount):
-        print(f'processing credit card payment of ${amount}')
+        print(f"processing credit card payment of ${amount}")
+
 
 class PaypalPayment(PaymentMethod):
     def process_payment(self, amount):
-        print(f'process Paypal Payment of ${amount}')
+        print(f"process Paypal Payment of ${amount}")
+
 
 class BankTransferPayment(PaymentMethod):
     def process_payment(self, amount):
-        print(f'process Bank Transfer Payment of ${amount}')
+        print(f"process Bank Transfer Payment of ${amount}")
 
-def make_payment(payment_method,amount):
-    payment_method.process_payment(amount)
 
-payment_methods = [CreditCardPayment(),PaypalPayment(),BankTransferPayment()]
+def make_payment(payment_method, amount):
+    payment_method.process_payment(amount)  # classname.methodname()
+
+
+payment_methods = [CreditCardPayment(), PaypalPayment(), BankTransferPayment()]
 
 for payment_method in payment_methods:
-    make_payment(payment_method,100)
+    make_payment(payment_method, 100)
 
 #     #######################################
 """

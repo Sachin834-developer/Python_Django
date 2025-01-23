@@ -1,0 +1,146 @@
+AWS Lambda Service for Django Rest Framework (DRF)
+AWS Lambda is a serverless compute service that lets you run code without managing servers. While traditionally DRF applications run on servers (like EC2), you can use AWS Lambda to handle specific parts of your application, particularly for stateless operations, background tasks, or API endpoints with low to medium traffic.
+
+
+Use Cases of AWS Lambda with DRF
+Serverless API Endpoints:
+
+Host lightweight DRF-like endpoints without running a dedicated EC2 server.
+Use AWS API Gateway to route HTTP requests to Lambda functions.
+
+Background Tasks:
+
+Offload time-consuming tasks (e.g., sending emails, resizing images) to a Lambda function.
+Trigger Lambda using S3 events or DynamoDB streams.
+Pre-processing Data:
+
+Process incoming data before inserting it into a database (e.g., validating or cleaning data from uploads).
+Cost Optimization:
+
+Use Lambda for low-traffic APIs to avoid the continuous cost of running an EC2 instance.
+
+Integration Tasks:
+Use Lambda as a glue between DRF and AWS services like S3, RDS, or DynamoDB.
+
+
+********************************************************************
+
+Steps to Implement File Upload to S3 Using Lambda
+Set Up S3 Bucket:
+
+Create an S3 bucket in AWS for storing uploaded files.
+Configure bucket permissions to allow pre-signed URL-based uploads.
+DRF API for Pre-signed URL Generation:
+
+Create an endpoint in DRF that generates a pre-signed S3 URL for direct client uploads.
+Lambda Function for File Upload:
+
+Write a Lambda function that processes the uploaded file.
+
+
+
+
+***********  Code Implementation:  ******************
+
+
+1. DRF Code: Generating Pre-signed URL
+In your DRF application:
+
+import boto3
+from botocore.exceptions import NoCredentialsError, PartialCredentialsError
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+class GeneratePresignedURL(APIView):
+    def post(self, request):
+        s3_client = boto3.client(
+            's3',
+            aws_access_key_id='your-aws-access-key-id',
+            aws_secret_access_key='your-aws-secret-access-key',
+            region_name='your-region',
+        )
+        bucket_name = 'your-s3-bucket-name'
+        file_name = request.data.get('file_name')
+        file_type = request.data.get('file_type')
+
+        if not file_name or not file_type:
+            return Response({"error": "File name and type are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            presigned_url = s3_client.generate_presigned_url(
+                'put_object',
+                Params={
+                    'Bucket': bucket_name,
+                    'Key': file_name,
+                    'ContentType': file_type,
+                },
+                ExpiresIn=3600,
+            )
+            return Response({"url": presigned_url})
+        except (NoCredentialsError, PartialCredentialsError):
+            return Response({"error": "Invalid AWS credentials."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+2. AWS Lambda Function: Post-upload Processing
+Create a Lambda function to process files after upload (optional):
+
+import boto3
+
+def lambda_handler(event, context):
+    s3_client = boto3.client('s3')
+    bucket_name = event['Records'][0]['s3']['bucket']['name']
+    file_key = event['Records'][0]['s3']['object']['key']
+    
+    # Example: Log the uploaded file details
+    print(f"File {file_key} uploaded to bucket {bucket_name}")
+    
+    # Example: Perform further processing if required
+    # e.g., Send a notification, move file, or process its content
+
+    return {
+        'statusCode': 200,
+        'body': f"File {file_key} processed successfully."
+    }
+
+3. Configure API Gateway
+    Create an API Gateway with a POST endpoint (/generate_presigned_url).
+    Integrate this endpoint with your DRF API or Lambda function.
+
+
+4. Client Workflow
+
+Call the DRF endpoint /generate_presigned_url to get the S3 pre-signed URL.
+Use the pre-signed URL to upload the file directly to S3:
+
+javascript
+Copy code
+const uploadFile = async (file) => {
+    const response = await fetch('/generate_presigned_url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file_name: file.name, file_type: file.type }),
+    });
+    const { url } = await response.json();
+
+    // Upload file to S3
+    const uploadResponse = await fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': file.type },
+        body: file,
+    });
+
+    if (uploadResponse.ok) {
+        console.log('File uploaded successfully!');
+    } else {
+        console.error('Failed to upload file.');
+    }
+};
+
+Summary:
+
+DRF handles pre-signed URL generation.
+S3 allows direct file uploads by clients.
+Lambda processes uploaded files (if needed).
+This architecture is scalable, efficient, and cost-effective.

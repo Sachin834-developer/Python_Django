@@ -6,25 +6,26 @@ psycopg2 - PostgreSQL
 mySQLconnector - MYSQL
 
 """
+
 import psycopg2
 
 try:
-    #establish the DB connection
+    # establish the DB connection
     connection = psycopg2.connect(
-        host = 'localhost',
-        database = 'localDB',
-        user = 'xyz',
-        password = "db_password",
-        port = "5432"
+        host="localhost",
+        database="localDB",
+        user="xyz",
+        password="db_password",
+        port="5432",
     )
 
-    # ?create cursor object cursor object allows you to execute PostgreSQL commands (e.g., queries, 
+    # create cursor object cursor object allows you to execute PostgreSQL commands (e.g., queries,
     # inserts, updates) within the connected database.
-    cursor  = connection.cursor()
+    cursor = connection.cursor()
 
-    cursor.execute("SELECT vesrsion()")
+    cursor.execute("SELECT version()")
 
-    result  = cursor.fetchall()   #fetchone()#fetchmany()
+    result = cursor.fetchall()  # fetchone()#fetchmany()
 
     for row in result:
         print(row)

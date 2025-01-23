@@ -1,0 +1,127 @@
+EC2 (Elastic Compute Cloud) is a virtual server provided by AWS where you can deploy and host your Django Rest Framework application. It gives you control over your server, operating system, and configurations.
+
+2. Steps to Deploy a DRF App on EC2
+a. Launch an EC2 Instance
+
+Log in to the AWS Management Console.
+Navigate to EC2 and click "Launch Instance."
+Select an AMI (e.g., Ubuntu 20.04).
+Choose an instance type (e.g., t2.micro for free tier).
+Configure security groups:
+Allow inbound traffic for HTTP (port 80), HTTPS (port 443), and SSH (port 22).
+
+b. Connect to the Instance
+
+Download the private key (.pem) file when launching the instance.
+Use SSH to connect:
+
+bash
+Copy code
+
+ssh -i my-key.pem ubuntu@<EC2-public-IP>
+
+c. Set Up the Server
+
+Update and Install Packages:
+bash
+Copy code
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3 python3-pip python3-venv nginx git
+
+Clone Your DRF Project:
+bash
+Copy code
+git clone https://github.com/<your-repo>.git
+cd <your-repo>
+
+d. Configure the Django App
+
+Set Up a Virtual Environment:
+bash
+Copy code
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+
+Run Migrations:
+bash
+Copy code
+
+python manage.py makemigrations
+python manage.py migrate
+
+e. Install Gunicorn
+Gunicorn serves your Django app.
+
+bash
+Copy code
+
+pip install gunicorn
+gunicorn --bind 0.0.0.0:8000 <your_project>.wsgi
+
+f. Configure Nginx
+
+Open the Nginx configuration file:
+bash
+Copy code
+sudo nano /etc/nginx/sites-available/<your-app>
+Add the following:
+nginx
+Copy code
+server {
+    listen 80;
+    server_name <your-EC2-public-IP>;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+Enable the configuration:
+bash
+
+sudo ln -s /etc/nginx/sites-available/<your-app> /etc/nginx/sites-enabled
+sudo nginx -t
+sudo systemctl restart nginx
+
+
+g. Access Your App
+Visit your EC2 public IP in the browser:
+
+Copy code
+http://<your-EC2-public-IP>
+
+***************************************************************************
+
+
+Vertical and Horizontal Scaling in AWS
+
+
+1. Vertical Scaling
+Vertical scaling involves upgrading the resources of a single instance (or server) to handle increased workloads. This could include adding more CPU, memory (RAM), or storage.
+
+Example:
+Upgrading an EC2 instance from t2.micro (1 vCPU, 1 GB RAM) to t2.large (2 vCPU, 8 GB RAM).
+
+Advantages:
+Simple to implement.
+No changes needed in the application architecture.
+
+Disadvantages:
+Limited by the maximum capacity of a single server.
+Downtime may be required during the upgrade.
+
+2. Horizontal Scaling
+Horizontal scaling involves adding more instances (or servers) to a system to handle increased traffic. It distributes the workload across multiple servers.
+
+Example:
+Adding more EC2 instances to a load balancer, so traffic is distributed across several instances.
+
+Advantages:
+Scalability is virtually unlimited (e.g., adding 10, 100, or 1000 instances as needed).
+High availability and fault tolerance (if one server fails, others continue serving).
+
+Disadvantages:
+Requires application and database architecture to support distributed systems.
+More complex to manage than vertical scaling.

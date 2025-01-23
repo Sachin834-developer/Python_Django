@@ -7,13 +7,16 @@ A One-to-One relationship means that for every instance of a model, there is exa
 Usage: In this example, the Profile model has a OneToOneField to the User model, meaning that each user can have only one profile.
 on_delete=models.CASCADE: This means that if the related User instance is deleted, the corresponding Profile instance will also be deleted.
 """
+
 from django.db import models
 from django.contrib.auth.models import User
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
     birth_date = models.DateField(null=True, blank=True)
+
 
 """
 2. One-to-Many Relationship (ForeignKey)
@@ -22,12 +25,16 @@ A One-to-Many relationship is established using a ForeignKey. This means that on
 Usage: In this example, the Book model has a ForeignKey to the Author model, indicating that a book is associated with a single author, but an author can write multiple books.
 on_delete=models.CASCADE: If the related Author instance is deleted, all associated Book instances will also be deleted.
 """
+
+
 class Author(models.Model):
     name = models.CharField(max_length=100)
+
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
 
 """
 3. Many-to-Many Relationship (ManyToManyField)
@@ -40,9 +47,12 @@ NOTE: 1. Django creates a New DB table handle many to many relationships
     2. on_delete  can have CASCADE, PROTECT , SET_NULL, SET_DEFAULT
     
 """
+
+
 class Course(models.Model):
     name = models.CharField(max_length=100)
 
+
 class Student(models.Model):
     name = models.CharField(max_length=100)
-    courses = models.ManyToManyField(Course)
+    courses = models.ManyToManyField(Course, on_delete=models.SET_NULL)

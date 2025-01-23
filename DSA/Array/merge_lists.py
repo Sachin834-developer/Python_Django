@@ -1,6 +1,3 @@
-
-
-
 # create opt as list beacause if its str concatination operation takes O(n) times with in the loop so it will be
 # Time comp..  - O(n**2)
 
@@ -9,16 +6,18 @@
 # Space : O(m+n)
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        opt = [] 
+        opt = []
         w = word1 if len(word1) > len(word2) else word2
         count = 0
-        for i,j in zip(word1,word2):
+        for i, j in zip(word1, word2):
             opt.append(i)
             opt.append(j)
-            count+=1
+            count += 1
         opt.append(w[count:])
-        
-        return ''.join(opt)
+
+        return "".join(opt)
+
+
 """
 Time Complexity
 Initialization:
@@ -92,6 +91,16 @@ O(n+m) – To store the merged result in the list and final string.
 This is an efficient solution for merging the two strings alternately.
 
 """
-        
+# alternative soln
 
-        
+
+def mergeAlternately(self, word1: str, word2: str) -> str:
+    res = []
+
+    for a, b in zip(word1, word2):
+        res.extend((a, b))
+
+    res.append(word1[len(word2) :])
+    res.append(word2[len(word1) :])
+
+    return "".join(res)

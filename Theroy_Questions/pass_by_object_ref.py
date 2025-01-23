@@ -11,22 +11,27 @@ When you pass an immutable object (e.g., an integer or string) to a function, an
    an immutable object, Python creates a new object rather than modifying the original.
 """
 
+
 def modify(x):
     x = 10  # This rebinds x to a new object, not affecting the original variable
+
 
 a = 5
 modify(a)
 print(a)  # Output: 5 (original value unchanged)
 
 """
-Mutuables:
+Mutables:
 
 When you pass a mutable object (e.g., a list or dictionary) to a function, the function receives 
 a reference to the original object. Any changes made to the object within the function will affect 
 the original object.
 """
+
+
 def modify(lst):
     lst.append(4)  # Modifies the original list
+
 
 my_list = [1, 2, 3]
 modify(my_list)

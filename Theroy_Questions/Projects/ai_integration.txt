@@ -1,0 +1,74 @@
+Project Overview:
+I developed an AI-powered code review system that helps developers analyze pull requests and receive actionable feedback. The system takes a Git repository URL and PR number as input, identifies changed files, and uses a Large Language Model (LLM) to review the code, providing improvement suggestions in a structured format.
+
+Technical Implementation:
+
+FastAPI acts as the primary service to handle client requests and asynchronously communicates with the Django server via HTTPX.
+Django orchestrates the process, leveraging Celery for distributed task execution and Redis as the message broker.
+The LLM (via Groq) processes the code changes and generates feedback.
+Impact:
+This system significantly improves code quality and accelerates learning for junior developers by providing independent, automated feedback without relying on senior developers.
+
+Why This Project is Valuable:
+This project showcases my ability to integrate AI tools, design asynchronous systems, and utilize technologies like Celery and Redis to create efficient, scalable solutions.
+
+
+1. What was the biggest technical challenge in this project, and how did you solve it?
+Answer:
+The biggest challenge was handling asynchronous communication between the FastAPI and Django servers, especially ensuring Celery tasks processed large code diffs efficiently.
+
+I used HTTPX for asynchronous requests to minimize blocking.
+For Celery, I optimized task management by chunking large pull request files, enabling parallel processing to prevent bottlenecks.
+Redis helped manage task queues effectively and ensure fault tolerance.
+2. Why did you choose FastAPI for this project?
+Answer:
+I chose FastAPI because it’s lightweight, has excellent support for asynchronous operations, and offers built-in validation using Pydantic. This made it ideal for creating the initial client-facing service to handle incoming HTTP requests efficiently.
+
+3. How did you integrate the LLM into your system?
+Answer:
+I integrated the LLM via Groq’s API by crafting specific prompts based on the file changes in the pull request.
+
+Each file’s code was sent to the LLM, asking for detailed feedback in the desired format.
+To avoid overwhelming the system, I queued requests using Celery and ensured response handling was robust, even for large or complex files.
+
+4. How did you ensure scalability in your project?
+I used Docker to containerize the services, making deployment consistent across environments.
+Redis and Celery allowed distributed task execution, scaling up processing as needed.
+I designed the system to process tasks asynchronously, ensuring minimal latency for the end user.
+
+5. What kind of feedback does the LLM provide, and how is it structured?
+Answer:
+The LLM provides detailed feedback in a structured format, such as:
+
+Identifying potential bugs or anti-patterns.
+Suggesting code optimizations and improvements.
+Highlighting areas for better readability or maintainability.
+This feedback is delivered in JSON format, making it easy for the frontend or client tools to present.
+
+6. How did you test the system to ensure accuracy and reliability?
+
+I wrote unit tests for FastAPI and Django endpoints to validate inputs and outputs.
+For Celery, I simulated tasks with different payloads to ensure the queue and worker processes handled edge cases.
+To test LLM accuracy, I compared its feedback against manual code reviews and fine-tuned prompts for better results.
+
+7. How does this project demonstrate your understanding of Django and AI integration?
+Answer:
+This project highlights my ability to leverage Django for backend orchestration, integrating third-party AI services via APIs, and managing complex workflows with tools like Celery. It shows my skill in combining traditional web development with cutting-edge AI solutions to solve real-world problems.
+
+8. What are some future enhancements you’d make to this project?
+Answer:
+
+Advanced LLM Fine-tuning: Train the LLM with domain-specific data for even more accurate feedback.
+Real-time Feedback: Implement WebSockets for instant feedback as developers make changes.
+Error Handling: Improve robustness by handling larger repositories or high volumes of PRs more efficiently.
+Metrics Dashboard: Add a dashboard for tracking code quality improvements and common issues across repositories.
+
+9. What would you do differently if you started this project again?
+Answer:
+I would introduce Kubernetes for container orchestration earlier in the project to handle scaling more effectively. Additionally, I’d use a more sophisticated message broker like RabbitMQ if Redis showed limitations in complex workflows.
+
+10. How does this project align with your career goals?
+Answer:
+This project reflects my interest in leveraging AI to improve developer workflows and building scalable, efficient backend systems. It aligns with my goal of becoming a full-stack developer who can integrate advanced technologies to solve practical challenges.
+
+

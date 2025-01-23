@@ -11,14 +11,17 @@ When to Use: Use *args when you want your function to accept any number of posit
  without having to define them explicitly in the function signature.
 
 """
+
+
 def print_values(*args):
     print(args)  # treats as tuple
 
     for value in args:
         print(value)
 
+
 print_values(1, 2, 3)
-print_values('a', 'b', 'c', 'd')
+print_values("a", "b", "c", "d")
 
 
 """
@@ -32,10 +35,13 @@ When to Use: Use **kwargs when you want your function to accept any number of ke
 arguments without having to define them explicitly in the function signature.
 
 """
-def print_key_value_pairs(**kwargs):  
-    print(kwargs) # treats as dict
+
+
+def print_key_value_pairs(**kwargs):
+    print(kwargs)  # treats as dict
     for key, value in kwargs.items():
         print(f"{key}: {value}")
+
 
 print_key_value_pairs(name="Alice", age=30, city="New York")
 
@@ -81,6 +87,7 @@ Immutable built-in types like int, float, str, and tuple (if all of its elements
 Custom classes can also be hashable if they implement __hash__() and __eq__() methods.
 Unhashable Objects:
 Mutable types like list, dict, and set are not hashable because their contents can change, which would invalidate their hash value. Since their state can change, Python cannot rely on a consistent hash value to perform operations like dictionary key lookups or set membership checks.
+
 Why Hashability Matters:
 Dictionaries: In Python, dictionaries use hash values to quickly look up keys. If an object is hashable, it can be used as a key in a dictionary.
 Sets: Sets also rely on hash values to efficiently determine membership and uniqueness. Only hashable objects can be added to a set.
@@ -112,9 +119,17 @@ print(hash((1, 2, 3)))  # This will work, as tuples are hashable
 
 """
 
-myset = {1,2,3,[2,3,]}
-print(myset)   #TypeError: unhashable type: 'list' we cannot use lists inside set. 
-# because it is unhashable 
+myset = {
+    1,
+    2,
+    3,
+    [
+        2,
+        3,
+    ],
+}
+print(myset)  # TypeError: unhashable type: 'list' we cannot use lists inside set.
+# because it is unhashable
 print(hash(myset))
 
 
@@ -152,7 +167,7 @@ print(my_tuple)  # Output: (1, {'key': 'new value'}, 3)
 """
 Summary:
 
-" == vs is " operrator 
+4. " == vs is " operrator 
 
 == checks for equality of values.
 is checks for identity (whether two references point to the same object in memory).
@@ -165,10 +180,9 @@ print(a is b)  # Output: False (because a and b are different objects in memory)
 
 
 """
-            *** MRO (Method Resolution Order)  *** 
+5.           *** MRO (Method Resolution Order)  *** 
             
-determines the order in which methods are resolved in a class hierarchy, particularly with multiple 
-inheritance.
+determines the order in which methods are resolved in a class hierarchy, particularly with multiple inheritance.
 
 Python uses the C3 linearization algorithm to calculate the MRO, ensuring that child classes 
 are checked before their parent classes and that the order of inheritance is respected.
@@ -179,20 +193,26 @@ method resolution.
 
 
 """
+
+
 class A:
     def method(self):
         print("Method in A")
+
 
 class B(A):
     def method(self):
         print("Method in B")
 
+
 class C(A):
     def method(self):
         print("Method in C")
 
+
 class D(B, C):
     pass
+
 
 d = D()
 d.method()
@@ -206,14 +226,13 @@ OUTPUT
 """
 
 
-
 ##########################################################################################
 
 # PYTHON PRINT()  FUNCTION
 # Basic Syntax: print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
 # Format Strings: Use +, str.format(), f-strings, or % for formatting output.
 
-print('sachin',sep=',',end=' ',flush=False)
+print("sachin", sep=",", end=" ", flush=False)
 
 
 print("without", end="")
@@ -224,9 +243,5 @@ print("newline!")  # Output: HelloWorld!
 Printing to a File:
 You can redirect the output to a file using the file parameter:
 """
-with open("output.txt",'r') as f:
+with open("output.txt", "r") as f:
     print("Hello World", file=f)
-
-
-
-

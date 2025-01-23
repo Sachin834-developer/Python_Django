@@ -16,13 +16,52 @@ Core Data Structures:
         9.Tries
         10.Union Find
 
+#18-01-2025 chatgpt
+Topics to Focus On
+Data Structures
+
+Arrays and Strings
+Linked Lists
+Stacks and Queues
+Hash Maps and Hash Sets
+Trees (Binary Trees, Binary Search Trees, N-ary Trees)
+Graphs
+Algorithms
+
+Sorting and Searching
+Recursion and Backtracking
+Dynamic Programming
+Greedy Algorithms
+Sliding Window Technique
+Divide and Conquer
+Two Pointers
+
+
+Problem Types
+
+String Manipulation
+Array Manipulation
+Matrix Problems
+Searching and Sorting
+Graph Traversals (DFS, BFS)
+Tree Traversals (Inorder, Preorder, Postorder)
+Optimization Problems (DP, Greedy)
+System Design for APIs and Microservices
+
+
+Other Key Areas
+
+SQL Queries
+Python Concepts: Decorators, Generators, List/Dict Comprehensions
+Basic System Design Concepts
+
 Data Structure learning tips:
 
  1. Note down and know the time complexity of the operation in a Data structure.
     ex: 1. Insertion/deletion time complexity of Linked List is O(1) - Constant time
         2. Insertion/deletion time complexity of List is O(n) - Linear time
 
-    understanding these time comp.. will help make decisions to choos right data structure to solve the problem.
+    understanding these time comp.. will help make decisions to choose right data structure to solve the problem.
 
 
 Leetcode Tips:
@@ -30,12 +69,12 @@ Leetcode Tips:
  1. Start with solving Easy level problems: 
     don't jump in to medium level unless you start feeling easy level questions are really easy, same goes with medium questions
 
- 2. Understand and implementation of  the base alogirthms first before actually solving the problem based on it.
+ 2. Understand and implementation of the base alogirthms first before actually solving the problem based on it.
   
  3. Most importantly Understand why the algorithm works in very deep level. use pen/paper or drawing board to illustriate the algorithm. 
 
  4. lastly, practice it enough times to make or get in to your muscle memory,
-    remember only way to good at anything is by practcing it number of times.
+    remember only way to good at anything is by practicing it number of times.
 
  5. After practicing few problems, practice your leet code problems with actual timers, beacause most interviews are time bound and we have the constant time pressure on us, so try to solve any prblem under 30 to 45 minute window else look to the top 5 solutions and understand why it works and learn from them.
 

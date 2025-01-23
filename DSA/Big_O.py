@@ -57,7 +57,7 @@ def bubble_sort(arr):
 ```
 
 #### 6. **O(2^n) – Exponential Time**
-- The algorithm’s runtime doubles with each additional input element. Typically seen in recursive algorithms that solve smaller subproblems multiple times.
+- The algorithm’s runtime doubles with each additional input element. Typically seen in recursive algorithms that solve smaller sub problems multiple times.
 - Example: Solving the Fibonacci sequence with simple recursion.
 ```python
 def fibonacci(n):
@@ -94,7 +94,7 @@ linear time = a*n+ b
 
 RUles to while calc Big O:
 
-1. Keep the fastest grwing term . so  t = a*n
+1. Keep the fastest growing term . so  t = a*n
 2. Drop constants , t = n  so its O(n)
 ex:
 t = n O(n)

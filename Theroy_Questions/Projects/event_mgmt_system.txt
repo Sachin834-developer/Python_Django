@@ -1,0 +1,77 @@
+ 1. Can you walk me through your Event Management System project? Highlight its features, technologies, and your role in the development process."
+
+"The Event Management System is a web application designed to facilitate event organization and participation. It allows users to create and manage events, register for events, and handle payments for registrations. The project incorporates key features like secure OAuth2 authentication, event registrations, payment gateway integration with Stripe, email notifications, and asynchronous task processing with Celery.
+
+I built this project using Django and Django Rest Framework (DRF) for the backend, PostgreSQL for the database, and Redis for asynchronous tasks. My role involved designing the database schema, developing RESTful APIs, integrating Stripe for payment processing, and implementing secure OAuth2 authentication.
+
+In addition, I implemented features like pagination, filtering, and notifications to make the application user-friendly and scalable. One key challenge I faced was debugging OAuth2 authentication errors during token generation, which required in-depth troubleshooting and configuration adjustments."
+
+
+***************************************************************************************
+
+
+2. "Why did you choose OAuth2 authentication, and how does it compare to other methods like JWT or basic authentication?"
+
+"I chose OAuth2 because it is a widely adopted standard for secure access delegation. It allows the system to authenticate users without exposing their credentials and provides granular control over permissions. OAuth2 is particularly beneficial for multi-platform applications, as it supports token-based authentication that can be reused across APIs.
+
+Compared to JWT (JSON Web Tokens), OAuth2 offers more flexibility in token management, including refresh tokens and expiration handling. JWTs are self-contained, which makes them larger and less suitable for scenarios requiring frequent updates or revocation. OAuth2 also has stronger community support and built-in capabilities for third-party integrations.
+
+Basic authentication, on the other hand, is less secure because it sends credentials with every request and does not support token revocation or expiration."
+
+
+***************************************************************************************
+
+
+3. "How did you handle payments in the system, and what challenges did you face while integrating Stripe?"
+
+"I integrated Stripe as the payment gateway to handle secure transactions during event registration. The implementation involved creating a checkout session using Stripe's API, generating payment intents, and listening for webhooks to track the payment status.
+
+One challenge I faced was ensuring payment data integrity, especially when dealing with asynchronous webhook updates. Initially, payment statuses were not updating reliably in the database. I resolved this by implementing a robust webhook listener that validated event payloads using Stripe's secret and updated the database accordingly.
+
+To prevent duplicate payments, I used unique transaction identifiers and carefully designed the workflow to only confirm a registration after successful payment processing."
+
+
+4. "Tell me more about your use of asynchronous tasks. Why did you choose Celery, and what tasks did you offload to it?"
+
+"I used Celery with Redis as the message broker to handle tasks that could run asynchronously, improving the system's responsiveness. Key tasks included:
+
+Sending email notifications for successful registrations and event reminders.
+Processing webhook events from Stripe to update payment statuses.
+Generating reports for event organizers in the background.
+
+Celery was an excellent choice because of its robust task retry mechanism and integration with Django. Redis, as the message broker, ensured low latency and high throughput for task communication.
+
+One issue I faced was handling failures in task execution, especially when email servers were temporarily unavailable. To address this, I configured retries with exponential backoff and logged failed attempts for manual intervention."
+
+5. "How did you ensure your API was scalable and optimized for large datasets?"
+
+"I ensured scalability by implementing pagination and filtering using Django Rest Framework's built-in tools. This approach prevented overwhelming responses and allowed clients to request only the necessary data.
+
+For database optimization, I used proper indexing on frequently queried fields, such as event dates and user IDs. I also leveraged select_related and prefetch_related in queryset optimization to reduce the number of database hits for related data.
+
+Additionally, I integrated caching with Redis for frequently accessed data, such as event details, to reduce load on the database."
+
+
+6. "What would you do to enhance this project further?"
+
+"In the future, I would implement the following enhancements:
+
+Mobile App API: Build APIs optimized for mobile clients, allowing real-time event updates and push notifications.
+
+Analytics Dashboard: Create dashboards with charts and insights for event organizers to monitor registrations and payments.
+
+AI Integration: Use AI to recommend events to users based on their interests and past participation.
+
+Multi-Gateway Support: Add support for other payment gateways like PayPal to cater to a broader audience.
+
+Push Notifications: Integrate Firebase Cloud Messaging (FCM) for instant updates on event changes or reminders."
+
+
+7. "Can you share a specific problem you encountered and how you approached solving it?"
+
+"One significant problem was the invalid_client error during OAuth2 token generation. After thorough debugging, I found that the client secret was not properly hashed or configured in the application. To resolve this, I:
+
+Verified the application's client ID and secret.
+Checked the hashing configuration in the OAuth2 toolkit.
+Regenerated the client credentials and reconfigured Postman to use them.
+This process taught me the importance of debugging systematically and ensuring consistent configuration across tools."

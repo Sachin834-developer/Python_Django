@@ -1,6 +1,6 @@
 What are the key differences between Python 2.x and Python 3.x?
 Explain Python’s Global Interpreter Lock (GIL). How does it affect multithreading in Python?
-How does Python manage memory?
+How does Python manages memory?
 What is the difference between deepcopy and shallow copy in Python?
 Explain the difference between __init__ and __new__.?
 What are Python decorators, and how do they work?

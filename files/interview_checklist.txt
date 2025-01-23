@@ -25,22 +25,22 @@ Python
 		11. Exception Handling					--Done
 		12. File Handling					--Done
 		13. MRO							--Done
-		14. Shallow copy and Deep Copy				--Done
+		14. Normal copy, Shallow copy and Deep Copy				--Done
 		15. List vs Tuple differences with examples		--Done
 		16. Database connection with python			--Done
-		17. list comp, dict comp with examples 			--DOne
+		17. list comp, dict comp with examples 			--Done
 		18. map,reduce,filter,zip, enumerate			--Done
 		19. 3rd party api integration				--Done
 		20. Async.io module					--Done
 		21. Multithreading defn					--Done
 		22. Multiprocessing defn				--Done
-		23. 
+		23. python 2 vs 3
 		24. SCOPE of Variables, LEGB RULE			--Done
 		25. Python Memory Management 				--DOne
-		26. How Python Works					--DOne
-		27.
-		
-
+		26. How Python Works					--Done
+		27.Pass by reference and pass by value  -- Done
+		28. SimpleQns 							-- Done
+ 
 
 -----------------------------
 Note : Rest API FUndamentals : https://restful-api.dev/rest-fundamentals#rest-api

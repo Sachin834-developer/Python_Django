@@ -1,0 +1,51 @@
+I am a Python Developer with 2.5 years of experience specializing in API development using Django Rest Framework. 
+
+I have strong expertise in designing and implementing RESTful APIs, coupled with hands-on experience in frontend technologies like HTML, CSS, JavaScript, and Vue.js. 
+
+I’m proficient in working with SQL databases such as MySQL and PostgreSQL, and I’ve utilized Docker for containerization and Git for version control. 
+
+My experience includes developing scalable applications, integrating third-party services, and optimizing API performance. 
+
+I’m also adept at using tools like Postman for API testing, and I thrive in collaborative, fast-paced environments.
+
+
+1. Can you describe a challenging API you developed using DRF?
+Answer:
+"In one project, I developed a payment processing API that required integrating a third-party payment gateway. The challenge was handling asynchronous callbacks for transaction statuses while maintaining idempotency and ensuring secure data handling. I used DRF's serializers for data validation and Django signals to handle post-payment events efficiently. To ensure robustness, I implemented retry mechanisms and extensive test cases, resulting in a highly reliable payment system."
+
+2. How have you optimized the performance of an API?
+Answer:
+"In a recent project, I optimized an API by implementing query optimizations like select_related and prefetch_related to reduce database hits. Additionally, I introduced pagination to limit large dataset responses and added caching using Redis to minimize redundant database queries. These improvements reduced response times by over 50%."
+
+3. How do you ensure the security of APIs?
+Answer:
+"I follow security best practices such as implementing OAuth2 for authentication, validating and sanitizing user inputs, and ensuring sensitive data is encrypted. I also set proper CORS policies, use HTTPS, and test for vulnerabilities using tools like OWASP ZAP to prevent attacks like SQL injection or cross-site scripting."
+
+4. Can you discuss a project where you used Vue.js?
+Answer:
+"In an Event Management System, I used Vue.js to build a dynamic frontend for managing user registrations and events. I utilized Vue's component-based architecture to create reusable UI components and managed state using Vuex. By integrating the frontend with a DRF backend, I ensured seamless communication via REST APIs."
+
+5. Why do you prefer MySQL or PostgreSQL for database management?
+Answer:
+"I choose the database based on the project requirements. MySQL is excellent for simpler, read-heavy operations due to its speed, while PostgreSQL offers advanced features like JSONB support and transactional integrity, making it ideal for complex data handling. In a recent project, I used PostgreSQL for its ability to handle complex queries and its robust support for data integrity."
+
+6. How do you use Docker in your projects?
+Answer:
+"I use Docker to containerize applications, ensuring consistency across development and production environments. For example, I created a Dockerfile for my Django application to define dependencies and runtime configurations. This streamlined deployments and made the application portable, allowing it to run seamlessly on any system."
+
+7. How do you manage version control in a team using Git?
+Answer:
+"I follow a Git workflow, typically GitFlow or feature-branch workflows, depending on the team. I ensure clear commit messages and use pull requests for code reviews. In one project, I also set up CI/CD pipelines that triggered builds and deployments upon merging changes to the main branch, which significantly improved development efficiency."
+
+8. How do you test APIs using Postman?
+Answer:
+"I use Postman to test APIs by creating collections with structured requests for each endpoint. I automate tests by writing scripts to validate response status codes, payloads, and performance. In a recent project, I used Postman to test edge cases and ensure the API met all functional requirements."
+
+9. Can you describe a project where you worked on full-stack development?
+Answer:
+"In a full-stack project, I built a sales management system using Django for the backend and Vue.js for the frontend. I designed RESTful APIs for data operations and created an intuitive frontend using Vue components. SQL databases like MySQL handled the data layer, while Docker ensured consistent deployments across environments."
+
+10. What do you do to stay updated with new technologies?
+Answer:
+"I follow tech blogs, participate in developer communities, and take online courses to stay updated. Recently, I explored fastAPI for lightweight APIs and worked on integrating cloud services like AWS S3 in my projects."
+
